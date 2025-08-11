@@ -1,6 +1,9 @@
--- Регистрация сетевых сообщений (делаем на сервере один раз)
+-- регистрируем сетевые сообщения и отправляем клиентский UI (на всякий случай)
 if SERVER then
-    util.AddNetworkString("FW_WorkOpen")      -- сервер -> клиент: открыть UI
-    util.AddNetworkString("FW_WorkStart")     -- клиент -> сервер: игрок начал мини-игру
-    util.AddNetworkString("FW_WorkComplete")  -- клиент -> сервер: игрок завершил (успех/провал)
+    util.AddNetworkString("FW_WorkOpen")
+    util.AddNetworkString("FW_WorkStart")
+    util.AddNetworkString("FW_WorkComplete")
+
+    -- убедимся, что клиентский UI будет отдан клиенту при подключении
+    AddCSLuaFile("autorun/client/fw_work_ui.lua")
 end
